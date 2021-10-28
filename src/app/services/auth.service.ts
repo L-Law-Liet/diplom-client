@@ -12,6 +12,7 @@ import {User} from "../models/user.model";
 export class AuthService {
   LOGIN_URL = environment.API + '/login';
   REGISTER_URL = environment.API + '/register';
+  FORGOT_PASSWORD_URL = environment.API + '/forgot-password';
 
   // @ts-ignore
   user: User;
@@ -77,5 +78,8 @@ export class AuthService {
   }
   isAuth(): boolean{
     return !!localStorage.getItem('user');
+  }
+  forgotPassword(form: any): Observable<any>{
+    return this.http.post(this.FORGOT_PASSWORD_URL, form)
   }
 }

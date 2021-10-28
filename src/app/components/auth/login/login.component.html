@@ -27,7 +27,10 @@
               <span *ngIf="form.errors?.password" class="invalid-feedback"> {{ form.errors?.password }} </span>
             </div>
           </div>
-          <button [disabled]="form.disabled" type="submit" class="btn btn-dark">Sign-in</button>
+          <div class="d-flex justify-content-between">
+            <button [disabled]="form.disabled" type="submit" class="btn btn-dark">Sign-in</button>
+            <button [routerLink]="'/forgot-password'" class="btn btn-outline-dark">Forgot Password?</button>
+          </div>
         </div>
       </form>
     </div>

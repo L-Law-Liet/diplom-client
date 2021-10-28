@@ -9,13 +9,19 @@ import {RegisterComponent} from "./components/auth/register/register.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {NgxMaskModule} from "ngx-mask";
+import { ForgotPasswordComponent } from './components/auth/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
+import { MainComponent } from './components/main/main.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HeaderComponent
+    HeaderComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
