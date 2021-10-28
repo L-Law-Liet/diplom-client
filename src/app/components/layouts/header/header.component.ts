@@ -11,16 +11,10 @@ import {AuthService} from "../../../services/auth.service";
 })
 export class HeaderComponent implements OnInit {
   loading = true;
-  // @ts-ignore
-  router: Router;
-  categories: Category[];
-  // @ts-ignore
-  constructor(private router: Router,
+  categories: Category[] = [];
+  constructor(public router: Router,
               public service: CategoryService,
-              public auth: AuthService) {
-    this.router = router;
-    this.categories = [];
-  }
+              public auth: AuthService) {}
 
   ngOnInit(): void {
     this.getCategories();

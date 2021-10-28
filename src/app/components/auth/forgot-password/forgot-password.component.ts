@@ -11,6 +11,8 @@ export class ForgotPasswordComponent implements OnInit {
   form = new FormGroup({
     email: new FormControl(''),
   })
+  success = ''
+  warn = ''
 
   constructor(private auth: AuthService) { }
 
@@ -18,15 +20,19 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   forgotPassword() {
+    this.form.disable()
+    this.warn = ''
     this.auth.forgotPassword(this.form.value).subscribe(
       res => {
-      console.log(res)
+        this.success = res.status
+        this.warn = res.email
       },
       error => {
         console.log(error)
         this.form.setErrors(error.error.errors);
       }
       )
+    this.form.enable()
   }
 
 }

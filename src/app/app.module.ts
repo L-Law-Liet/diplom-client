@@ -10,8 +10,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {NgxMaskModule} from "ngx-mask";
 import { ForgotPasswordComponent } from './components/auth/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { MainComponent } from './components/main/main.component';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +22,10 @@ import { MainComponent } from './components/main/main.component';
     RegisterComponent,
     HeaderComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent,
-    MainComponent
+    MainComponent,
+    ProductsComponent,
+    ProductDetailComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
