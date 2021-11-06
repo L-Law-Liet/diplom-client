@@ -7,13 +7,16 @@ import { HeaderComponent } from './components/layouts/header/header.component';
 import {LoginComponent} from "./components/auth/login/login.component";
 import {RegisterComponent} from "./components/auth/register/register.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {NgxMaskModule} from "ngx-mask";
 import { ForgotPasswordComponent } from './components/auth/forgot-password/forgot-password.component';
 import { MainComponent } from './components/main/main.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { InputTextComponent } from './components/input-text/input-text.component';
+import { CabinetComponent } from './components/cabinet/cabinet.component';
+import {AuthInterceptor} from "./interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     MainComponent,
     ProductsComponent,
     ProductDetailComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    InputTextComponent,
+    CabinetComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +42,7 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     ReactiveFormsModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

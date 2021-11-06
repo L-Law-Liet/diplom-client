@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {CategoryService} from '../../../services/category.service';
 import {Category} from '../../../models/category.model';
 import {AuthService} from "../../../services/auth.service";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,8 @@ export class HeaderComponent implements OnInit {
   categories: Category[] = [];
   constructor(public router: Router,
               public service: CategoryService,
-              public auth: AuthService) {}
+              public auth: AuthService,
+              public userService: UserService) {}
 
   ngOnInit(): void {
     this.getCategories();

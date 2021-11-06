@@ -14,7 +14,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
             <li *ngFor="let category of service.categories">
-              <a class="dropdown-item" [routerLinkActive]="['active']" [routerLink]="'/category/'+category.id">{{ category.name }}</a>
+              <a class="dropdown-item" [routerLinkActive]="['active']" [routerLink]="'/category/' + category.id">{{ category.name }}</a>
             </li>
           </ul>
         </li>
@@ -35,14 +35,15 @@
 <!--          </li>-->
           <li class="nav-item dropdown">
             <a [class.active]="this.router.url === '/cabinet'"  class="nav-link dropdown-toggle" id="profileDropdown" role="button" data-bs-toggle="dropdown">
-              {{ auth.user.name }}
+              {{ userService.user.name }}
             </a>
+
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="profileDropdown">
               <li><a class="dropdown-item" [routerLinkActive]="['active']" [routerLink]="'/cabinet'">Profile</a></li>
               <li><a (click)="logout()" class="dropdown-item">Exit</a></li>
             </ul>
           </li>
-          <li *ngIf="auth.user.admin" class="nav-item dropdown">
+          <li *ngIf="userService.user.admin" class="nav-item dropdown">
             <a [class.active]="this.router.url.startsWith('/admin')"  class="nav-link dropdown-toggle" id="adminDropdown" role="button" data-bs-toggle="dropdown">
               Admin
             </a>

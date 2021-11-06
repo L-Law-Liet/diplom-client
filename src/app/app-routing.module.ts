@@ -6,6 +6,7 @@ import {ForgotPasswordComponent} from "./components/auth/forgot-password/forgot-
 import {MainComponent} from "./components/main/main.component";
 import {ProductsComponent} from "./components/products/products.component";
 import {ProductDetailComponent} from "./components/product-detail/product-detail.component";
+import {CabinetComponent} from "./components/cabinet/cabinet.component";
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'product/:id',
     component: ProductDetailComponent
+  },
+  {
+    path: 'cabinet',
+    component: CabinetComponent
   },
   {
     path: 'login',

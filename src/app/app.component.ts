@@ -1,10 +1,32 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from "./services/user.service";
+import {AuthService} from "./services/auth.service";
+import set = Reflect.set;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'diplom';
+  ready = false;
+
+  constructor(private service: UserService, private auth: AuthService) {
+  }
+
+  ngOnInit() {
+    if (this.auth.isAuth()){
+      this.setUser()
+    }
+  }
+
+  setUser() {
+    this.service.getUser().subscribe(res => {
+      console.log(res)
+      this.service.setUser(res)
+      this.ready = true
+    })
+  }
+
 }
