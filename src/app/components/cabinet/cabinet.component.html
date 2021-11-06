@@ -1,0 +1,29 @@
+<div class="m-3">
+  <div class="m-3">
+    <h1 class="text-center">Profile</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-2">
+      <div>
+        <img width="100%" class="card-img" [src]="(user.image) ? user.image : ''" alt="">
+      </div>
+      <form [formGroup]="form">
+        <div>
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input formControlName="name" type="text" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input disabled type="email" class="form-control" [value]="user.email">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input formControlName="phone" type="text" class="form-control" placeholder="+7 (777) 777-77-77" prefix="+7" mask=" (000) 000-00-00">
+          </div>
+          <button type="submit" class="btn btn-dark">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
