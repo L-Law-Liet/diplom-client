@@ -1,11 +1,13 @@
-<div>
-  <div class="my-3">
-    <h2 class="text-center">Home</h2>
-  </div>
+<div class="container">
   <div *ngIf="ready">
-    <div class="row">
-      <div class="col-md-4" *ngFor="let product of products">
-        <app-product-card [product]="product"></app-product-card>
+    <div class="my-3">
+      <h2 class="text-center">{{category.name}}</h2>
+    </div>
+    <div>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let product of category.products">
+          <app-product-card [product]="product"></app-product-card>
+        </div>
       </div>
     </div>
   </div>

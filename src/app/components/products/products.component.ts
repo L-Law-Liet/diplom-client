@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductService} from "../../services/product.service";
-import {Product} from "../../models/product.model";
-import {ActivatedRoute, Router, RouterLinkActive} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
+import {CategoryService} from "../../services/category.service";
+import {Category} from "../../models/category.model";
 
 @Component({
   selector: 'app-products',
@@ -9,21 +9,24 @@ import {ActivatedRoute, Router, RouterLinkActive} from "@angular/router";
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  products: Product[] = []
+  // @ts-ignore
+  category: Category;
   ready = false
   id: number = 0
 
-  constructor(private productService: ProductService, private router: ActivatedRoute) { }
+  constructor(private categoryService: CategoryService, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.id = this.router.snapshot.params.id
-    this.getProductsByCategoryId(this.id)
+    this.router.params.subscribe(params => {
+      this.id = params.id;
+      this.getCategory(this.id)
+    });
+    // this.id = this.router.snapshot.params.id
   }
-  getProductsByCategoryId(id: any) {
-    this.productService.getByCategoryId(id).subscribe(res => {
-      this.products = res
+  getCategory(id: any) {
+    this.categoryService.getCategory(id).subscribe(res => {
+      this.category = res
       this.ready = true
-      console.log(this.products)
     }, error => {
       console.log(error)
     })
