@@ -1,25 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
+import {BaseAuth} from "../../../interfaces/base-auth";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.sass']
+  styleUrls: ['./login.component.css', '../styles/style.css']
 })
-export class LoginComponent implements OnInit {
-  // @ts-ignore
-  form: FormGroup;
-  hide = true;
+export class LoginComponent extends BaseAuth implements OnInit {
+  inputs = [
+    {name: 'email', type: 'email', icon: 'email', placeholder: 'Email'},
+    {name: 'password', type: 'password', icon: 'password', placeholder: 'Password', eye: true}
+  ]
 
-  constructor(private service: AuthService, private fb: FormBuilder, private router: Router) { }
+  constructor(private service: AuthService, private router: Router) {
+    super();
+    this.form = new FormGroup({
+      email: new FormControl(''),
+      password: new FormControl(''),
+    });
+  }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      email: '',
-      password: '',
-    });
   }
   login(): void{
     this.form.disable();
@@ -30,10 +34,12 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.form.enable();
-        console.log(error);
         this.form.setErrors(error.error.errors);
         console.log(this.form.errors);
       }
     );
+  }
+  setVal(input: any) {
+    this.form.get(input.name)?.setValue(input.value)
   }
 }

@@ -1,0 +1,22 @@
+<div>
+  <div class="mb-3 position-relative">
+    <img class="position-absolute" style="top: calc((63px - 45px) / 2); left: 1rem" [src]="'/assets/images/icons/'+ input.icon +'.png'">
+    <input *ngIf="input.type == 'tel'"
+           (change)="valueChanged(field.value)" #field
+           [class.is-invalid]="error" [type]="hide ? input.type : 'text'"
+           class="input-text" [placeholder]="input.placeholder"
+           prefix="+7"
+           mask="(000) 000-00-00">
+    <input *ngIf="input.type != 'tel'"
+           (change)="valueChanged(field.value)" #field
+           [class.is-invalid]="error" [type]="hide ? input.type : 'text'"
+           class="input-text" [placeholder]="input.placeholder"
+    >
+    <div *ngIf="input.eye" class="input-group-prepend password-eye-div">
+                <span (click)="hide = !hide" class="input-group-text password-eye">
+                  <i [ngClass]="hide ? 'fa-eye-slash' : 'fa-eye'" class="fa"></i>
+                </span>
+    </div>
+    <span *ngIf="error" style="color: rgba(255, 255, 255, 0.8);" class="invalid-feedback"> {{ error[0] }} </span>
+  </div>
+</div>

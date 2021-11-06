@@ -1,0 +1,32 @@
+.input-text {
+  color: white;
+  background: #2F126D;
+  border: 1px solid #845DDE;
+  box-sizing: border-box;
+  border-radius: 17px;
+  padding: 1rem calc(45px + 1.6rem);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 29px;
+  max-width: 100%;
+}
+.input-text::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.password-eye-div {
+  position: absolute;
+  top: calc((63px - 45px) / 2);
+  right: 1rem;
+  height: 45px;
+}
+
+.password-eye {
+  height: 100%;
+  background: transparent;
+  border: 1px solid #845DDE;
+  cursor: pointer;
+  color: #845DDE;
+  font-size: 1.5rem;
+}

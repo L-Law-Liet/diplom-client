@@ -1,38 +1,28 @@
-<div class="m-3">
-  <div class="m-md-5 mt-5">
-    <div class="m-3">
-      <h1 class="text-center">Sign-in</h1>
-    </div>
-    <div class="row">
-      <form [formGroup]="form" (submit)="login()">
-        <div class="offset-md-3 col-md-6">
-          <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input [class.is-invalid]="form.errors?.email" formControlName="email" type="email" class="form-control" placeholder="name@example.com">
-            <span *ngIf="form.errors?.email" class="invalid-feedback"> {{ form.errors?.email }} </span>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Password</label>
+<div style="background: url('/assets/images/login.png'); background-size: cover; min-height: calc(100vh - 56px)"
+     class="p-1 d-flex justify-content-center align-items-center">
 
-            <div class="input-group">
-              <input [class.is-invalid]="form.errors?.password" formControlName="password" [type]="hide ? 'password' : 'text'" class="form-control">
-              <div class="input-group-prepend">
-                <span class="input-group-text h-100" style="width: 46px;" id="basic-addon1">
-                  <i
-                  style="cursor: pointer"
-                  (click)="hide = !hide"
-                  [ngClass]="hide ? 'fa-eye-slash' : 'fa-eye'" class="fa"></i>
-                </span>
-              </div>
-              <span *ngIf="form.errors?.password" class="invalid-feedback"> {{ form.errors?.password }} </span>
-            </div>
-          </div>
-          <div class="d-flex justify-content-between">
-            <button [disabled]="form.disabled" type="submit" class="btn btn-dark">Sign-in</button>
-            <button [routerLink]="'/forgot-password'" class="btn btn-outline-dark">Forgot Password?</button>
-          </div>
+  <div class="card">
+    <div class="mx-md-5 mx-3 my-4 px-md-5">
+      <div class="m-md-3">
+        <h1 class="text-white">Sign In</h1>
+      </div>
+      <form [formGroup]="form" (submit)="login()">
+        <div *ngFor="let input of inputs">
+          <input type="hidden" [formControlName]="input.name">
+          <app-input-text [input]="input" [error]="this.form.getError(input.name)" (valueChangedEvent)="setVal($event)"></app-input-text>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button [disabled]="form.disabled" type="submit" class="form-btn">Sign-in</button>
         </div>
       </form>
+      <div class="my-3" style="border-bottom: 1px solid #6645B0;">
+        <p class="text-link">
+          Don’t have an account? <a class="btn-link" [routerLink]="'/register'">Sign-up</a>
+        </p>
+        <p class="text-link">
+          Forgot password? <a class="btn-link" [routerLink]="'/forgot-password'">Reset password</a>
+        </p>
+      </div>
     </div>
   </div>
 </div>
