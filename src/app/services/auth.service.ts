@@ -14,9 +14,6 @@ export class AuthService {
   REGISTER_URL = environment.API + '/register';
   FORGOT_PASSWORD_URL = environment.API + '/forgot-password';
 
-  // @ts-ignore
-  user: User;
-
   constructor(
     private http: HttpClient,
     private router: Router
@@ -28,7 +25,6 @@ export class AuthService {
         ({token, user}) => {
           console.log('serv', token, user);
           this.setToken(token);
-          this.setUser(user);
         },
         error => {
           console.log(error)
@@ -44,7 +40,6 @@ export class AuthService {
         ({token, user}) => {
           console.log('serv', token, user);
           this.setToken(token);
-          this.setUser(user);
         },
         error => {
           console.log(error)
@@ -60,15 +55,6 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
-  setUser(user: User){
-    this.user = user
-    localStorage.removeItem('user');
-    localStorage.setItem('user', JSON.stringify(user));
-  }
-  getUser(){
-    return JSON.parse(<string>localStorage.getItem('user'));
-  }
-
   logout(): void{
     localStorage.removeItem('token');
     localStorage.removeItem('user');
@@ -77,7 +63,7 @@ export class AuthService {
     this.router.navigate(['/']);
   }
   isAuth(): boolean{
-    return !!localStorage.getItem('user');
+    return !!localStorage.getItem('token');
   }
   forgotPassword(form: any): Observable<any>{
     return this.http.post(this.FORGOT_PASSWORD_URL, form)
