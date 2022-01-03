@@ -58,8 +58,6 @@ export class AuthService {
   logout(): void{
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    // @ts-ignore
-    this.user = null;
     this.router.navigate(['/']);
   }
   isAuth(): boolean{
