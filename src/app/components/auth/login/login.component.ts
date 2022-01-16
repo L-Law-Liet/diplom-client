@@ -1,8 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BaseAuth} from "../../../interfaces/base-auth";
+import {IDictionary} from "../../../interfaces/dictionary";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-login',
@@ -15,22 +17,22 @@ export class LoginComponent extends BaseAuth implements OnInit {
     {name: 'password', type: 'password', icon: 'password', placeholder: 'Password', eye: true}
   ]
 
-  constructor(private service: AuthService, private router: Router) {
+  constructor(private service: AuthService, private userService: UserService, private router: Router) {
     super();
     this.form = new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl(''),
+      email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
+      password: new FormControl('', Validators.required),
     });
   }
 
-  ngOnInit(): void {
-  }
-  login(): void{
+  ngOnInit(): void {}
+
+  login(): void {
+    console.log(this.form, this.form.get('email')?.errors)
     this.form.disable();
     this.service.login(this.form.getRawValue()).subscribe(res => {
-        console.log('s', res);
+      this.userService.setUser(res.user)
         this.router.navigate(['/'])
-        // tslint:disable-next-line:no-shadowed-variable
       },
       error => {
         this.form.enable();
@@ -39,7 +41,5 @@ export class LoginComponent extends BaseAuth implements OnInit {
       }
     );
   }
-  setVal(input: any) {
-    this.form.get(input.name)?.setValue(input.value)
-  }
 }
+

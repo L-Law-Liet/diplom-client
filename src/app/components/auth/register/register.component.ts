@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {BaseAuth} from "../../../interfaces/base-auth";
 
@@ -20,11 +20,11 @@ export class RegisterComponent extends BaseAuth implements OnInit {
   constructor(private service: AuthService, private router: Router) {
     super();
     this.form = new FormGroup({
-      name: new FormControl(''),
-      email: new FormControl(''),
-      phone: new FormControl(''),
-      password: new FormControl(''),
-      password_confirmation: new FormControl(''),
+      name: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
+      phone: new FormControl('', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])),
+      password: new FormControl('', Validators.required),
+      password_confirmation: new FormControl('', Validators.required),
     });
   }
   ngOnInit(): void {

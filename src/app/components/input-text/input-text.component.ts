@@ -10,7 +10,6 @@ export class InputTextComponent implements OnInit {
   input: any
   @Input()
   error: any
-  hide = true
 
   @Output()
   valueChangedEvent = new EventEmitter<object>();

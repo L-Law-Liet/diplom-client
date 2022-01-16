@@ -11,16 +11,12 @@ import {environment} from "../../environments/environment";
 export class UserService {
   USER_API = environment.API + '/user'
 
-  // @ts-ignore
-  user: User
-  constructor(private http: HttpClient,
-              private router: Router) { }
+  user!: User
+  constructor(private http: HttpClient) { }
   getUser(): Observable<User>{
     return this.http.get<User>(this.USER_API)
   }
   setUser(user: User){
     this.user = user
-    localStorage.removeItem('user');
-    localStorage.setItem('user', JSON.stringify(user));
   }
 }

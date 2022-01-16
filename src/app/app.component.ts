@@ -19,7 +19,9 @@ export class AppComponent implements OnInit{
     if (this.auth.isAuth()){
       this.setUser()
     }
-    this.ready = true
+    else {
+      this.ready = true
+    }
   }
 
   setUser() {

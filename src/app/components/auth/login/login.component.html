@@ -8,11 +8,38 @@
       </div>
       <form [formGroup]="form" (submit)="login()">
         <div *ngFor="let input of inputs">
-          <input type="hidden" [formControlName]="input.name">
-          <app-input-text [input]="input" [error]="this.form.getError(input.name)" (valueChangedEvent)="setVal($event)"></app-input-text>
+          <div class="mb-3 position-relative">
+            <img class="position-absolute" style="top: calc((63px - 45px) / 2); left: 1rem" [src]="'/assets/images/icons/'+ input.icon +'.png'">
+            <input *ngIf="input.type == 'tel'"
+                   [formControlName]="input.name"
+                   [class.is-invalid]="hasError(input)"
+                   [type]="hide ? input.type : 'text'"
+                   class="input-text"
+                   [placeholder]="input.placeholder"
+                   prefix="+7"
+                   mask="(000) 000-00-00"
+            >
+            <input *ngIf="input.type != 'tel'"
+                   [formControlName]="input.name"
+                   [class.is-invalid]="hasError(input)"
+                   [type]="hide ? input.type : 'text'"
+                   class="input-text"
+                   [placeholder]="input.placeholder"
+            >
+            <div *ngIf="input.eye" class="input-group-prepend password-eye-div">
+                <span (click)="hide = !hide" class="input-group-text password-eye">
+                  <i [ngClass]="hide ? 'fa-eye-slash' : 'fa-eye'" class="fa"></i>
+                </span>
+            </div>
+            <span *ngIf="hasError(input)"
+                  style="color: rgba(255, 255, 255, 0.8);"
+                  class="invalid-feedback">
+              {{ form.getError(input.name) ? form.getError(input.name) : getError(form.controls[input.name].errors) }}
+            </span>
+          </div>
         </div>
         <div class="d-flex justify-content-center">
-          <button [disabled]="form.disabled" type="submit" class="form-btn">Sign-in</button>
+          <button [disabled]="form.disabled || form.invalid" type="submit" class="form-btn">Sign-in</button>
         </div>
       </form>
       <div class="my-3" style="border-bottom: 1px solid #6645B0;">
