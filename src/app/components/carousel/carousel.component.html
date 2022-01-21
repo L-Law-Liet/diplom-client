@@ -1,0 +1,29 @@
+<div [id]="name" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button
+      *ngFor="let slider of sliders; let i = index; let first = first"
+      type="button"
+      [attr.data-bs-target]="'#' + name"
+      [attr.data-bs-slide-to]="i"
+      [attr.aria-label]="name + i"
+      [class.active]="first"
+      [attr.aria-current]="first"
+    ></button>
+  </div>
+  <div class="carousel-inner">
+    <div *ngFor="let slider of sliders; let i = index; let first = first" [class.active]="first" class="carousel-item">
+      <img height="350" [src]="slider.img + name + i" class="d-block w-100">
+      <div class="carousel-caption d-none d-md-block">
+        <p class="p-3" style="background: #220956; border: 1px solid #FFFFFF; border-radius: 17px;">{{slider.text}}</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#' + name" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#' + name" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

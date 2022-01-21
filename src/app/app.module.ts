@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +17,18 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { InputTextComponent } from './components/input-text/input-text.component';
 import { CabinetComponent } from './components/cabinet/cabinet.component';
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
+import { ContactsComponent } from './pages/contacts/contacts.component';
+import {AngularYandexMapsModule, YaConfig} from "angular8-yandex-maps";
+
+import localeFr from '@angular/common/locales/ru-KZ';
+import {registerLocaleData} from "@angular/common";
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { FooterComponent } from './components/layouts/footer/footer.component';
+registerLocaleData(localeFr);
+const mapConfig: YaConfig = {
+  apikey: 'API_KEY',
+  lang: 'en_US',
+};
 
 @NgModule({
   declarations: [
@@ -30,7 +42,10 @@ import {AuthInterceptor} from "./interceptors/auth.interceptor";
     ProductDetailComponent,
     ProductCardComponent,
     InputTextComponent,
-    CabinetComponent
+    CabinetComponent,
+    ContactsComponent,
+    CarouselComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +54,14 @@ import {AuthInterceptor} from "./interceptors/auth.interceptor";
     FormsModule,
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularYandexMapsModule.forRoot(mapConfig)
   ],
   providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'ru-KZ'
+    },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]

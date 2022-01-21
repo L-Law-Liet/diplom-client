@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  API: 'http://diplom.loc/api'
+  API: 'http://diplom.loc/api',
+  BASE_CURRENCY: 'KZT',
+  FREECURRENCY_API_KEY: '98ea91e0-792f-11ec-8dab-17796cf0b74f',
+  FREECURRENCY_API: 'https://freecurrencyapi.net/api/v2/latest'
 };
 
 /*
