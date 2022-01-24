@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "./services/user.service";
-import {AuthService} from "./services/auth.service";
+import {UserService} from "./shared/services/user.service";
+import {AuthService} from "./auth/services/auth.service";
 import set = Reflect.set;
 
 @Component({
