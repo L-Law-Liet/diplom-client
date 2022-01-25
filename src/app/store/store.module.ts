@@ -19,6 +19,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CartComponent } from './pages/cart/cart.component';
 import { FavouritesComponent } from './pages/favourites/favourites.component';
 import { NewsComponent } from './pages/news/news.component';
+import { ArticleComponent } from './pages/article/article.component';
 
 registerLocaleData(localeFr);
 
@@ -40,6 +41,7 @@ const mapConfig: YaConfig = {
     CartComponent,
     FavouritesComponent,
     NewsComponent,
+    ArticleComponent,
   ],
   imports: [
     CommonModule,

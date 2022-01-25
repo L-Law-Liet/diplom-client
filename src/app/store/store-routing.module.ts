@@ -8,6 +8,7 @@ import {ContactsComponent} from "./pages/contacts/contacts.component";
 import {CartComponent} from "./pages/cart/cart.component";
 import {FavouritesComponent} from "./pages/favourites/favourites.component";
 import {NewsComponent} from "./pages/news/news.component";
+import {ArticleComponent} from "./pages/article/article.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'news',
     component: NewsComponent
+  },
+  {
+    path: 'news/:id',
+    component: ArticleComponent
   },
   {
     path: 'category/:id',
