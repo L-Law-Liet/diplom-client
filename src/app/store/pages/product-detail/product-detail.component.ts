@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../../services/product.service";
 import {ActivatedRoute} from "@angular/router";
 import {Product} from "../../models/product.model";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-product-detail',
@@ -10,9 +11,10 @@ import {Product} from "../../models/product.model";
 })
 export class ProductDetailComponent implements OnInit {
   product!: Product
-  ready = false
   id: number = 0
-
+  link = environment.DEFAULT_IMG
+  favourite = true
+  public count = 3
   constructor(private productService: ProductService, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -22,10 +24,12 @@ export class ProductDetailComponent implements OnInit {
   getProduct(id: any) {
     this.productService.getById(id).subscribe(res => {
       this.product = res
-      this.ready = true
-      console.log(this.product)
+      this.link = this.product.image.link
     }, error => {
       console.log(error)
     })
+  }
+  setImage(link: string) {
+    this.link = link
   }
 }

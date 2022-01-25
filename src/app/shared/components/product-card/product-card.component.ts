@@ -10,6 +10,8 @@ import {Product} from "../../../store/models/product.model";
 export class ProductCardComponent implements OnInit {
   @Input()
   product!: Product
+  @Input()
+  detailed = false
   constructor() { }
 
   ngOnInit(): void {

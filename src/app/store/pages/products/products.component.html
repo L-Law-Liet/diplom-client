@@ -5,8 +5,10 @@
     </div>
     <div>
       <div class="row">
-        <div class="col-md-4" *ngFor="let product of category.products">
-          <app-product-card [product]="product"></app-product-card>
+        <div class="col-md-3" *ngFor="let product of category.products">
+          <div class="card card-body my-2">
+            <app-product-card [product]="product"></app-product-card>
+          </div>
         </div>
       </div>
     </div>

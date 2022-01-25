@@ -8,6 +8,9 @@
         <li class="nav-item">
           <a [class.active]="this.router.url === '/'"  class="nav-link" [routerLink]="'/'">Home</a>
         </li>
+        <li class="nav-item">
+          <a [class.active]="this.router.url === '/news'"  class="nav-link" [routerLink]="'/news'">News</a>
+        </li>
         <li class="nav-item dropdown">
           <a [class.active]="this.router.url.startsWith('/category')"  class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown">
             Categories

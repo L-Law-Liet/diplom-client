@@ -25,6 +25,7 @@ export class ProductsComponent implements OnInit {
   getCategory(id: any) {
     this.categoryService.getCategory(id).subscribe(res => {
       this.category = res
+      console.log(this.category.products[0])
       this.ready = true
     }, error => {
       console.log(error)

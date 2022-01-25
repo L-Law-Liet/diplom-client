@@ -16,6 +16,9 @@ import {CarouselComponent} from "../shared/components/carousel/carousel.componen
 import {AuthInterceptor} from "../auth/interceptors/auth.interceptor";
 import {AngularYandexMapsModule, YaConfig} from "angular8-yandex-maps";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { CartComponent } from './pages/cart/cart.component';
+import { FavouritesComponent } from './pages/favourites/favourites.component';
+import { NewsComponent } from './pages/news/news.component';
 
 registerLocaleData(localeFr);
 
@@ -34,6 +37,9 @@ const mapConfig: YaConfig = {
     CabinetComponent,
     ContactsComponent,
     CarouselComponent,
+    CartComponent,
+    FavouritesComponent,
+    NewsComponent,
   ],
   imports: [
     CommonModule,
