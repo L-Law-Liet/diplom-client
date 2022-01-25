@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="card card-body">
+      <h2 class="text-center">News</h2>
+    </div>
+    <div class="col-md-6" *ngFor="let article of news">
+      <div class="my-3">
+        <div class="card text-white"
+             style="height: 500px"
+             [style]="'background:linear-gradient(to bottom, rgba(0,0,0,0) 10%, rgba(0,0,0,1)), url(' + article.image + ')'"
+        >
+          <div class="card-img-overlay d-flex align-items-end">
+            <div class="w-100">
+              <a class="card-title text-center text-white text-decoration-none" [routerLink]="'/news/' + article.id"><h5>{{article.title}}</h5></a>
+              <p class="card-text">{{article.created_at | date: 'dd.LL.y'}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

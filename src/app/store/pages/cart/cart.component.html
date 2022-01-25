@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="col-md-8">
+      <div class="card card-body">
+        <h2>Shopping Cart (3)</h2>
+      </div>
+      <div class="my-3" *ngFor="let product of products">
+        <div class="card card-body">
+          <div class="text-end">
+            <button type="button" class="btn-close" aria-label="Close"></button>
+          </div>
+          <app-product-card [product]="product" [detailed]="true"></app-product-card>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="cart-order">
+        <div class="card card-body">
+          <h2>Order Summary</h2>
+          <table class="table table-hover">
+            <tbody>
+            <tr *ngFor="let product of products">
+              <td>
+                Name: {{product.name}}
+              </td>
+              <td>
+                Price: {{product.price | currency}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="p-2">
+            <b>Total: 33.56 $</b>
+          </div>
+          <div class="my-2">
+            <button class="w-100 btn btn-outline-primary">Buy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

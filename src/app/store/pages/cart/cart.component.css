@@ -1,0 +1,11 @@
+.cart-order {
+  position: fixed;
+  width: calc(1320px * 0.33333);
+}
+
+@media (max-width: 768px) {
+  .cart-order {
+    position: relative;
+    width: 100%;
+  }
+}
