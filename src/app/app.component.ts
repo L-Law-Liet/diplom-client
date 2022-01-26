@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "./shared/services/user.service";
 import {AuthService} from "./auth/services/auth.service";
 import set = Reflect.set;
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent implements OnInit{
   title = 'diplom';
   ready = false;
 
-  constructor(private service: UserService, private auth: AuthService) {
+  constructor(private service: UserService, private auth: AuthService, private router: Router) {
   }
 
   ngOnInit() {
@@ -29,6 +30,9 @@ export class AppComponent implements OnInit{
       console.log(res)
       this.service.setUser(res)
       this.ready = true
+    }, error => {
+      localStorage.removeItem('token')
+      this.router.navigate(['/'])
     })
   }
 

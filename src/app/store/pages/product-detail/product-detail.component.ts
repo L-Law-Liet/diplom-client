@@ -3,6 +3,8 @@ import {ProductService} from "../../services/product.service";
 import {ActivatedRoute} from "@angular/router";
 import {Product} from "../../models/product.model";
 import {environment} from "../../../../environments/environment";
+import {FavouritesService} from "../../services/favourites.service";
+import {AuthService} from "../../../auth/services/auth.service";
 
 @Component({
   selector: 'app-product-detail',
@@ -13,14 +15,23 @@ export class ProductDetailComponent implements OnInit {
   product!: Product
   id: number = 0
   link = environment.DEFAULT_IMG
-  favourite = true
-  public count = 3
-  constructor(private productService: ProductService, private router: ActivatedRoute) { }
+  favourite = false
+  public count = 1
+  loading = false;
+  constructor(
+    private productService: ProductService,
+    public auth: AuthService,
+    private favouritesService: FavouritesService,
+    private router: ActivatedRoute
+  ) {
+  }
 
   ngOnInit(): void {
     this.id = this.router.snapshot.params.id
     this.getProduct(this.id)
+    this.getFavourite()
   }
+
   getProduct(id: any) {
     this.productService.getById(id).subscribe(res => {
       this.product = res
@@ -29,7 +40,42 @@ export class ProductDetailComponent implements OnInit {
       console.log(error)
     })
   }
+
   setImage(link: string) {
     this.link = link
+  }
+
+  getFavourite() {
+    this.favouritesService.getByProductId(this.id).subscribe(res => {
+      this.favourite = res.exists
+    }, error => {
+      this.favourite = false
+    })
+  }
+
+  addToFavourite() {
+    this.favouritesService.create({product_id: this.id}).subscribe(res => {
+      if (res.created)
+        this.favourite = true
+    },
+        () => {},
+      () => { this.loading = false })
+  }
+
+  removeFromFavourite() {
+    this.favouritesService.delete(this.id).subscribe(res => {
+      if (res.deleted) {
+        this.favourite = false
+      }
+    },
+      () => {},
+      () => { this.loading = false }
+    )
+  }
+  toggleFavourite() {
+    if (!this.loading) {
+      this.loading = true;
+      this.favourite ? this.removeFromFavourite() : this.addToFavourite()
+    }
   }
 }

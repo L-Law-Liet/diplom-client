@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from "../../models/product.model";
+import {FavouritesService} from "../../services/favourites.service";
 
 @Component({
   selector: 'app-favourites',
@@ -8,15 +9,26 @@ import {Product} from "../../models/product.model";
 })
 export class FavouritesComponent implements OnInit {
 
-  products: Product[] = [
-    {name: 'Product1', price: 18.09, image: {link: 'https://via.placeholder.com/640x480.png/777?text=Product1'}, description: 'a', id: 12, created_at: '', media: [], updated_at: ''},
-    {name: 'Product2', price: 8.45, image: {link: 'https://via.placeholder.com/640x480.png/777?text=Product2'}, description: 'a', id: 12, created_at: '', media: [], updated_at: ''},
-    {name: 'Product3', price: 23.98, image: {link: 'https://via.placeholder.com/640x480.png/777?text=Product3'}, description: 'a', id: 12, created_at: '', media: [], updated_at: ''},
-  ]
+  products: Product[] = []
+  loading = false
 
-  constructor() { }
+  constructor(private favouritesService: FavouritesService) { }
 
   ngOnInit(): void {
+    this.getFavourites()
   }
-
+  getFavourites() {
+    this.favouritesService.all().subscribe(res => {
+      this.products = res
+    })
+  }
+  remove(id: number) {
+    if (!this.loading) {
+      this.loading = true
+      this.favouritesService.delete(id).subscribe(res => {
+        if (res.deleted)
+          this.getFavourites()
+      })
+    }
+  }
 }

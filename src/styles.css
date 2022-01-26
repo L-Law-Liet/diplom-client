@@ -5,3 +5,6 @@
 .pointer {
   cursor: pointer;
 }
+.wait {
+  cursor: wait !important;
+}

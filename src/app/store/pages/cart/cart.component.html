@@ -17,21 +17,25 @@
       <div class="cart-order">
         <div class="card card-body">
           <h2>Order Summary</h2>
-          <table class="table table-hover">
-            <tbody>
-            <tr *ngFor="let product of products">
-              <td>
-                Name: {{product.name}}
-              </td>
-              <td>
-                Price: {{product.price | currency}}
-              </td>
+          <table class="table table-hover table-striped table-bordered">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Cost</th>
+              <th>Count</th>
             </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of products">
+              <td>{{item.name}}</td>
+              <td>{{item.price | currency}}</td>
+              <td>{{'12'}}</td>
+            </tr>
+            <div class="pt-2">
+              <b>Total: {{'123.23' | currency}}</b>
+            </div>
             </tbody>
           </table>
-          <div class="p-2">
-            <b>Total: 33.56 $</b>
-          </div>
           <div class="my-2">
             <button class="w-100 btn btn-outline-primary">Buy</button>
           </div>

@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row my-3">
+  <div class="row my-3" *ngIf="article">
     <div class="card card-body">
       <h2 class="text-center">{{article.title}}</h2>
     </div>
@@ -9,7 +9,7 @@
         <p>Created: {{article.created_at | date: 'dd.LL.y'}}</p>
       </div>
       <div class="col-md-6">
-        <img [src]="article.image" width="100%">
+        <img [src]="article.media.link" width="100%">
       </div>
     </div>
   </div>
