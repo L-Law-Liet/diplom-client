@@ -5,6 +5,7 @@ import {Product} from "../../models/product.model";
 import {environment} from "../../../../environments/environment";
 import {FavouritesService} from "../../services/favourites.service";
 import {AuthService} from "../../../auth/services/auth.service";
+import {CartService} from "../../services/cart.service";
 
 @Component({
   selector: 'app-product-detail',
@@ -18,10 +19,12 @@ export class ProductDetailComponent implements OnInit {
   favourite = false
   public count = 1
   loading = false;
+  added = false
   constructor(
     private productService: ProductService,
     public auth: AuthService,
     private favouritesService: FavouritesService,
+    private cartService: CartService,
     private router: ActivatedRoute
   ) {
   }
@@ -76,6 +79,17 @@ export class ProductDetailComponent implements OnInit {
     if (!this.loading) {
       this.loading = true;
       this.favourite ? this.removeFromFavourite() : this.addToFavourite()
+    }
+  }
+  addToCart() {
+    if (!this.loading) {
+      this.loading = true
+      this.cartService.create({product_id: this.id, count: this.count}).subscribe(res => {
+        if (res.created) {
+          this.added = true
+          this.count = 1
+        }
+      }, () => {}, () => {this.loading = false})
     }
   }
 }

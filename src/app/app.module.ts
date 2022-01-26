@@ -9,6 +9,7 @@ import {StoreModule} from "./store/store.module";
 import {HeaderComponent} from "./shared/layout/header/header.component";
 import {FooterComponent} from "./shared/layout/footer/footer.component";
 import {AuthModule} from "./auth/auth.module";
+import { TableComponent } from './shared/components/table/table.component';
 
 const mapConfig: YaConfig = {
   apikey: 'API_KEY',
@@ -20,6 +21,7 @@ const mapConfig: YaConfig = {
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,

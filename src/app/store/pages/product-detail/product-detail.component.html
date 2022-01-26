@@ -1,5 +1,18 @@
 <div class="container pt-4">
+  <div
+    [class.z-index]="added"
+    class="position-fixed d-flex justify-content-center container"
+  >
+    <div
+      [class.show]="added"
+      class="alert alert-success alert-dismissible fade"
+      role="alert">
+      <strong>Success!</strong> You can check your cart.
+      <button (click)="added = false" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
   <div *ngIf="product" class="row">
+
     <div class="col-md-5">
       <div class="my-3">
         <h2 class="text-center">{{product.name}}</h2>
@@ -31,7 +44,13 @@
              style="font-size: 12px"
              class="pointer fas fa-plus border btn-outline-secondary rounded-circle p-2"></i>
         </div>
-        <button class="btn btn-outline-dark">Buy <i class="fas fa-cart-arrow-down"></i></button>
+        <button
+          (click)="addToCart()"
+          [class.wait]="loading"
+          class="btn btn-outline-dark"
+        >
+          Buy <i class="fas fa-cart-arrow-down"></i>
+        </button>
         <button
           (click)="toggleFavourite()"
           class="btn ms-2 btn-outline-{{favourite ? 'danger' : 'dark'}}"

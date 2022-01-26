@@ -2,14 +2,19 @@
   <div class="row my-3">
     <div class="col-md-8">
       <div class="card card-body">
-        <h2>Shopping Cart (3)</h2>
+        <h2>Shopping Cart ({{carts.length}})</h2>
       </div>
-      <div class="my-3" *ngFor="let product of products">
+      <div class="my-3" *ngFor="let cart of carts">
         <div class="card card-body">
           <div class="text-end">
-            <button type="button" class="btn-close" aria-label="Close"></button>
+            <button (click)="remove(cart.id)" [class.wait]="loading" type="button" class="btn-close" aria-label="Close"></button>
           </div>
-          <app-product-card [product]="product" [detailed]="true"></app-product-card>
+          <app-product-card [product]="cart.product" [detailed]="true"></app-product-card>
+        </div>
+      </div>
+      <div class="mt-5 pt-md-5" *ngIf="!carts.length">
+        <div class="mt-md-5 p-4 rounded alert-secondary">
+          <h2 class="text-center">Your Cart is Empty</h2>
         </div>
       </div>
     </div>
@@ -26,13 +31,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let item of products">
-              <td>{{item.name}}</td>
-              <td>{{item.price | currency}}</td>
-              <td>{{'12'}}</td>
+            <tr *ngFor="let cart of carts">
+              <td>{{cart.product.name}}</td>
+              <td>{{cart.product.price | currency}}</td>
+              <td>{{cart.count}}</td>
             </tr>
             <div class="pt-2">
-              <b>Total: {{'123.23' | currency}}</b>
+              <b>Total: {{total | currency}}</b>
             </div>
             </tbody>
           </table>

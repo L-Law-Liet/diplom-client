@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Product} from "../../models/product.model";
-import {Category} from "../../models/category.model";
+import {CartService} from "../../services/cart.service";
+import {Cart} from "../../models/cart.model";
 
 @Component({
   selector: 'app-cart',
@@ -8,14 +8,32 @@ import {Category} from "../../models/category.model";
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  products: Product[] = [
-    {name: 'Product1', price: 18.09, image: {link: 'https://via.placeholder.com/640x480.png/777?text=Product1'}, description: 'a', id: 12, created_at: '', media: [], updated_at: ''},
-    {name: 'Product2', price: 8.45, image: {link: 'https://via.placeholder.com/640x480.png/777?text=Product2'}, description: 'a', id: 12, created_at: '', media: [], updated_at: ''},
-    {name: 'Product3', price: 23.98, image: {link: 'https://via.placeholder.com/640x480.png/777?text=Product3'}, description: 'a', id: 12, created_at: '', media: [], updated_at: ''},
-  ]
-  constructor() { }
+  carts: Cart[] = []
+  total = 0
+  loading = false
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.getCart()
   }
-
+  getCart() {
+    this.total = 0
+    this.cartService.all().subscribe(res => {
+      this.carts = res
+      for (const resKey in res) {
+        console.log(resKey)
+        this.total += res[resKey].count * res[resKey].product.price
+      }
+    })
+  }
+  remove(id: number) {
+    if (!this.loading) {
+      this.loading = true
+      this.cartService.delete(id).subscribe(res => {
+        if (res.deleted) {
+          this.getCart()
+        }
+      }, () => {}, () => {this.loading = false})
+    }
+  }
 }
