@@ -1,5 +1,5 @@
 export class Media {
   constructor(
-    link: string,
+    public link: string,
   ) {}
 }

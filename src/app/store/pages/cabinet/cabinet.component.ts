@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../../shared/services/user.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {OrderService} from "../../services/order.service";
+import {Order} from "../../models/order.model";
+import {User} from "../../../shared/models/user.model";
 
 @Component({
   selector: 'app-cabinet',
@@ -8,42 +11,57 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./cabinet.component.css']
 })
 export class CabinetComponent implements OnInit {
-  user: any
-  orders = [
-    {
-      id: 1,
-      total: (Math.random() * 1000).toFixed(2),
-      order_items: [
-        {name: 'Product1', cost: 14.89, count: 3, created_at: '12.10.2021'},
-        {name: 'Product2', cost: Math.random().toFixed(3), count: 7, created_at: '07.08.2021'},
-        {name: 'Product3', cost: Math.random().toFixed(3), count: 4, created_at: '09.10.2021'},
-        {name: 'Product4', cost: Math.random().toFixed(3), count: 6, created_at: '12.12.2021'},
-      ]
-    },
-    {
-      id: 2,
-      total: (Math.random() * 1000).toFixed(2),
-      order_items: [
-        {name: 'Product1', cost: 14.89, count: 3, created_at: '12.10.2021'},
-        {name: 'Product2', cost: Math.random().toFixed(3), count: 7, created_at: '07.08.2021'},
-        {name: 'Product3', cost: Math.random().toFixed(3), count: 4, created_at: '09.10.2021'},
-        {name: 'Product4', cost: Math.random().toFixed(3), count: 6, created_at: '12.12.2021'},
-      ]
-    }
-  ]
+  user!: User
+  orders: Order[] = []
   form = new FormGroup({})
-  constructor(private userService: UserService) {
+  link = ''
+  loading = false
+  constructor(
+    private userService: UserService,
+    private orderService: OrderService
+  ) {
     this.form = new FormGroup({
       name: new FormControl(userService.user.name),
-      email: new FormControl(userService.user.email),
       phone: new FormControl(userService.user.phone),
     })
   }
 
   ngOnInit(): void {
     this.getUser()
+    this.getOrders()
   }
   getUser() {
     this.user = this.userService.user
+    this.link = this.user.media.link
+    console.log(this.user)
+  }
+  getOrders() {
+    this.orderService.all().subscribe(res => {
+      this.orders = res
+      console.log(res)
+    })
+  }
+  setAvatar(files: FileList) {
+    if (files.length){
+      const image = files[0];
+      console.log(image)
+      this.userService.setAvatar(image).subscribe(
+        res => {
+          this.link = res.link
+          this.userService.user.media = res
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+  }
+  update() {
+    if (!this.loading) {
+      this.loading = true
+      this.userService.update(this.form.getRawValue()).subscribe(res => {
+        this.userService.setUser(res)
+      }, () => {}, () => {this.loading = false})
+    }
   }
 }

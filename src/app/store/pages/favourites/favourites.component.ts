@@ -28,7 +28,7 @@ export class FavouritesComponent implements OnInit {
       this.favouritesService.delete(id).subscribe(res => {
         if (res.deleted)
           this.getFavourites()
-      })
+      }, () => {}, () => {this.loading = false})
     }
   }
 }

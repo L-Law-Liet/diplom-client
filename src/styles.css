@@ -8,6 +8,9 @@
 .wait {
   cursor: wait !important;
 }
+.not-allowed {
+  cursor: not-allowed !important;
+}
 .z-index {
   z-index: 1000
 }

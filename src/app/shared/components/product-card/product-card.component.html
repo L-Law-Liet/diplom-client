@@ -11,7 +11,7 @@
       Description
     </div>
     <div class="card-body">
-      {{ (product.description.length>6)? (product.description | slice:0:200)+'...':(product.description)}}
+      {{ (product.description.length>6)? (product.description | slice:0:180)+'...':(product.description)}}
     </div>
     <p>
       Category: <a [routerLink]="'/category/' + product.category?.id">{{product.category?.name}}</a>

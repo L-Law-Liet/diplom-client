@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CartService} from "../../services/cart.service";
 import {Cart} from "../../models/cart.model";
+import {OrderService} from "../../services/order.service";
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +12,10 @@ export class CartComponent implements OnInit {
   carts: Cart[] = []
   total = 0
   loading = false
-  constructor(private cartService: CartService) { }
+  constructor(
+    private cartService: CartService,
+    private orderService: OrderService,
+  ) { }
 
   ngOnInit(): void {
     this.getCart()
@@ -33,7 +37,25 @@ export class CartComponent implements OnInit {
         if (res.deleted) {
           this.getCart()
         }
-      }, () => {}, () => {this.loading = false})
+      }, () => {this.loading = false}, () => {this.loading = false})
+    }
+  }
+  checkout() {
+    if (!this.loading && this.carts.length) {
+      this.loading = true
+      this.orderService.makeOrder().subscribe(res => {
+        if (res.ordered) {
+          alert('Ordered!')
+          this.getCart()
+        } else {
+          alert('Error')
+        }
+      }, () => {
+        alert('Error!')
+        this.loading = false
+      }, () => {
+        this.loading = false
+      })
     }
   }
 }

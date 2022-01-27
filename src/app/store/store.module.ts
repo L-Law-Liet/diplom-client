@@ -47,6 +47,7 @@ const mapConfig: YaConfig = {
     CommonModule,
     StoreRoutingModule,
     HttpClientModule,
+    NgxMaskModule.forRoot(),
     AngularYandexMapsModule.forRoot(mapConfig),
     FormsModule,
     ReactiveFormsModule,

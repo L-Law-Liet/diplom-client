@@ -42,7 +42,12 @@
             </tbody>
           </table>
           <div class="my-2">
-            <button class="w-100 btn btn-outline-primary">Buy</button>
+            <button
+              [class.wait]="loading"
+              [class.not-allowed]="!carts.length"
+              (click)="checkout()"
+              class="w-100 btn btn-outline-primary"
+            >Buy</button>
           </div>
         </div>
       </div>
