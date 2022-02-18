@@ -8,7 +8,7 @@ export const environment = {
   BASE_CURRENCY: 'KZT',
   FREECURRENCY_API_KEY: '98ea91e0-792f-11ec-8dab-17796cf0b74f',
   FREECURRENCY_API: 'https://freecurrencyapi.net/api/v2/latest',
-  DEFAULT_IMG: 'https://via.placeholder.com/640x480.png',
+  DEFAULT_IMG: 'https://via.placeholder.com/640x480.png/777?text=',
 };
 
 /*

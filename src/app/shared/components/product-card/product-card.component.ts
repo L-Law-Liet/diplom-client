@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Product} from "../../../store/models/product.model";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-product-card',
@@ -17,4 +18,7 @@ export class ProductCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getDefaultImage() {
+    return environment.DEFAULT_IMG + this.product.name;
+  }
 }
