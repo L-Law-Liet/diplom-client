@@ -38,7 +38,8 @@ export class ProductDetailComponent implements OnInit {
   getProduct(id: any) {
     this.productService.getById(id).subscribe(res => {
       this.product = res
-      this.link = this.product.image.link
+      // @ts-ignore
+      this.link = this.product.images[0]
     }, error => {
       console.log(error)
     })

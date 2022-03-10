@@ -5,8 +5,8 @@ export class News {
     public id: number,
     public title: string,
     public body: string,
+    public image: string,
     public created_at: string,
     public updated_at: string,
-    public media: {[link: string]: string},
   ) {}
 }

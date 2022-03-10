@@ -32,8 +32,7 @@ export class CabinetComponent implements OnInit {
   }
   getUser() {
     this.user = this.userService.user
-    this.link = this.user.media.link
-    console.log(this.user)
+    this.link = this.user.image
   }
   getOrders() {
     this.orderService.all().subscribe(res => {
@@ -47,8 +46,8 @@ export class CabinetComponent implements OnInit {
       console.log(image)
       this.userService.setAvatar(image).subscribe(
         res => {
-          this.link = res.link
-          this.userService.user.media = res
+          this.link = res
+          this.userService.user.image = res
         },
         error => {
           console.log(error);

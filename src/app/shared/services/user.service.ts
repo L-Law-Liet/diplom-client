@@ -25,10 +25,10 @@ export class UserService {
     this.user = user
   }
 
-  setAvatar(image: File): Observable<Media>{
+  setAvatar(image: File): Observable<string>{
     const formData = new FormData()
     formData.append('image', image)
-    return this.http.post<Media>(this.USER_IMAGE_API, formData)
+    return this.http.post<string>(this.USER_IMAGE_API, formData)
   }
 
   update(body: {phone: string, name: string}): Observable<any> {

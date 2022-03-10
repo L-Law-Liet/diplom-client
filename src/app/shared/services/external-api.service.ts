@@ -23,9 +23,6 @@ export class ExternalApiService {
   }
 
   getOilPrice(): Observable<any> {
-    let url = this.CURRENCY_API
-    url += '?base_currency=' + this.BASE_CURRENCY
-    url += '&apikey=' + this.CURRENCY_API_KEY
     return this.http.get(this.OIL_API)
   }
 }

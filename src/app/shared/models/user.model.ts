@@ -5,7 +5,7 @@ export class User {
     public id: number,
     public name: string,
     public email: string,
-    public media: Media,
+    public image: string,
     public admin: boolean,
     public phone: string,
   ) {}

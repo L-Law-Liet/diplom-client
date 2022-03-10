@@ -9,8 +9,8 @@ export class Product {
     public description: string,
     public created_at: string,
     public updated_at: string,
-    public image: {[link: string]: string},
-    public media: {[link: string]: string}[],
+    public images: [],
+    public image: string,
     public category?: Category,
   ) {}
 }

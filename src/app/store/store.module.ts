@@ -20,6 +20,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { FavouritesComponent } from './pages/favourites/favourites.component';
 import { NewsComponent } from './pages/news/news.component';
 import { ArticleComponent } from './pages/article/article.component';
+import {ImagePipe} from "../shared/pipes/image.pipe";
 
 registerLocaleData(localeFr);
 
@@ -42,16 +43,17 @@ const mapConfig: YaConfig = {
     FavouritesComponent,
     NewsComponent,
     ArticleComponent,
+    ImagePipe,
   ],
-  imports: [
-    CommonModule,
-    StoreRoutingModule,
-    HttpClientModule,
-    NgxMaskModule.forRoot(),
-    AngularYandexMapsModule.forRoot(mapConfig),
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        CommonModule,
+        StoreRoutingModule,
+        HttpClientModule,
+        NgxMaskModule.forRoot(),
+        AngularYandexMapsModule.forRoot(mapConfig),
+        FormsModule,
+        ReactiveFormsModule,
+    ],
   providers: [
     {
       provide: LOCALE_ID,
