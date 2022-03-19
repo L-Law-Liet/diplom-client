@@ -21,6 +21,12 @@ import { FavouritesComponent } from './pages/favourites/favourites.component';
 import { NewsComponent } from './pages/news/news.component';
 import { ArticleComponent } from './pages/article/article.component';
 import {ImagePipe} from "../shared/pipes/image.pipe";
+import { AboutUsComponent } from './pages/about-us/about-us.component';
+import {FeedbackComponent} from "../shared/components/feedback/feedback.component";
+import { PartnersComponent } from './pages/partners/partners.component';
+import {TouchFormComponent} from "../shared/components/touch-form/touch-form.component";
+import {CeoInfoComponent} from "../shared/components/ceo-info/ceo-info.component";
+import {LoadingComponent} from "../shared/components/loading/loading.component";
 
 registerLocaleData(localeFr);
 
@@ -44,6 +50,12 @@ const mapConfig: YaConfig = {
     NewsComponent,
     ArticleComponent,
     ImagePipe,
+    AboutUsComponent,
+    FeedbackComponent,
+    TouchFormComponent,
+    CeoInfoComponent,
+    PartnersComponent,
+    LoadingComponent,
   ],
     imports: [
         CommonModule,

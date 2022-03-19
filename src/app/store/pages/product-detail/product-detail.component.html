@@ -1,81 +1,107 @@
-<div class="container pt-4">
-  <div
-    [class.z-index]="added"
-    class="position-fixed d-flex justify-content-center container"
-  >
+<div>
+  <div class="container pt-4">
     <div
-      [class.show]="added"
-      class="alert alert-success alert-dismissible fade"
-      role="alert">
-      <strong>Success!</strong> You can check your cart.
-      <button (click)="added = false" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      [class.z-index]="added"
+      class="position-fixed d-flex justify-content-center container"
+    >
+      <div
+        [class.show]="added"
+        class="alert alert-success alert-dismissible fade"
+        role="alert">
+        <strong>Success!</strong> You can check your cart.
+        <button (click)="added = false" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
     </div>
-  </div>
-  <div *ngIf="product" class="row">
+    <div *ngIf="product" class="row">
 
-    <div class="col-md-5">
-      <div class="my-3">
-        <h2 class="text-center">{{product.name}}</h2>
-      </div>
-      <p>
-        Cost: <span class="text-success">{{product.price | currency}}</span>
-      </p>
-      <p>
-        Category: <a [routerLink]="'/category/' + product.category?.id">{{product.category?.name}}</a>
-      </p>
-      <p>
-        Created: <span class="text-secondary">{{product.created_at | date: 'dd.LL.y'}}</span>
-      </p>
-      <div class="card">
-        <div class="card-header text-center">
-          Description
+      <div class="col-md-5">
+        <div class="my-3">
+          <h2>{{product.name}}</h2>
         </div>
-        <div class="card-body">
+        <p>
           {{product.description}}
+        </p>
+        <p>
+          Category: <a [routerLink]="'/category/' + product.category?.id">{{product.category?.name}}</a>
+        </p>
+      </div>
+      <div class="col-md-7">
+        <div class="p-1 text-center">
+          <img [src]="link" height="500px">
         </div>
-      </div>
-      <div class="my-3" *ngIf="auth.isAuth()">
-        <div class="my-2">
-          <i (click)="count = (count - 1) ? count - 1 : 1"
-             style="font-size: 12px"
-             class="pointer fas fa-minus border btn-outline-secondary rounded-circle p-2"></i>
-          <span class="mx-1 text-secondary">{{count}}</span>
-          <i (click)="count = count + 1"
-             style="font-size: 12px"
-             class="pointer fas fa-plus border btn-outline-secondary rounded-circle p-2"></i>
-        </div>
-        <button
-          (click)="addToCart()"
-          [class.wait]="loading"
-          class="btn btn-outline-dark"
-        >
-          Buy <i class="fas fa-cart-arrow-down"></i>
-        </button>
-        <button
-          (click)="toggleFavourite()"
-          class="btn ms-2 btn-outline-{{favourite ? 'danger' : 'dark'}}"
-          [class.wait]="loading"
-        >
-          <i class="fas fa-heart"></i>
-        </button>
-      </div>
-    </div>
-    <div class="col-md-7">
-      <div class="p-1">
-        <img [src]="link" height="500px" width="100%">
-      </div>
-      <div class="d-flex justify-content-start">
-        <div class="p-1" *ngFor="let image of product.images">
-          <img
-            class="pointer"
-            (click)="setImage(image)"
-            [class]="image == link ? 'img-active' : 'img'"
-            height="100"
-            style="max-width: 100%"
-            [src]="image"
-          >
+        <div class="d-flex justify-content-end my-2">
+          <div class="me-2">
+            <label class="form-control border-0 fw-bold">Price: {{product.price | currency}}</label>
+          </div>
+          <div *ngIf="auth.isAuth()" class="d-flex">
+            <div class="me-2">
+              <input class="form-control" type="number" [(ngModel)]="count">
+            </div>
+            <div class="me-3">
+              <button
+                (click)="toggleFavourite()"
+                class="btn ms-2 btn-outline-{{favourite ? 'danger' : 'dark'}}"
+                [class.wait]="loading"
+              >
+                <i class="fas fa-heart"></i>
+              </button>
+            </div>
+            <div>
+              <button
+                class="bg-base fw-bold px-3 btn rounded-pill text-white"
+                (click)="addToCart()"
+                [class.wait]="loading">
+                Add to cart
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <div style="background:radial-gradient(#220956, #000);" class="text-white p-4">
+    <div class="my-4">
+      <h2 class="text-center">Features</h2>
+    </div>
+    <div class="my-4">
+      <p class="text-center">Lorem ipsum dolor sit amet, consectetur.</p>
+    </div>
+    <div class="mx-5 px-5">
+      <div class="row">
+        <div class="col-md-3 p-5">
+          <div class="p-3">
+            <div class="rounded-circle text-center me-5 mb-3" style="height: 140px; background:#000;">
+              <h5 style="line-height: 140px">Quality</h5>
+            </div>
+            <p style="font-size: .8rem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquid assumenda atque consectetur dicta ea, earum esse et impedit, laboriosam quaerat quia quidem?</p>
+          </div>
+        </div>
+        <div class="col-md-3 p-5">
+          <div class="p-3">
+            <div class="rounded-circle text-center me-5 mb-3" style="height: 140px; background:#000;">
+              <h5 style="line-height: 140px">Reliability</h5>
+            </div>
+            <p style="font-size: .8rem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquid assumenda atque consectetur dicta ea, earum esse et impedit, laboriosam quaerat quia quidem?</p>
+          </div>
+        </div>
+        <div class="col-md-3 p-5">
+          <div class="p-3">
+            <div class="rounded-circle text-center me-5 mb-3" style="height: 140px; background:#000;">
+              <h5 style="line-height: 140px">Credibility</h5>
+            </div>
+            <p style="font-size: .8rem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquid assumenda atque consectetur dicta ea, earum esse et impedit, laboriosam quaerat quia quidem?</p>
+          </div>
+        </div>
+        <div class="col-md-3 p-5">
+          <div class="p-3">
+            <div class="rounded-circle text-center me-5 mb-3" style="height: 140px; background:#000;">
+              <h5 style="line-height: 140px">Partnership</h5>
+            </div>
+            <p style="font-size: .8rem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquid assumenda atque consectetur dicta ea, earum esse et impedit, laboriosam quaerat quia quidem?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

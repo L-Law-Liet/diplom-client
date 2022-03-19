@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CartService} from "../../services/cart.service";
 import {Cart} from "../../models/cart.model";
 import {OrderService} from "../../services/order.service";
+import {EventService} from "../../../shared/services/event.service";
 
 @Component({
   selector: 'app-cart',
@@ -15,9 +16,11 @@ export class CartComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private orderService: OrderService,
+    private eventService: EventService
   ) { }
 
   ngOnInit(): void {
+    this.eventService.changeBreadcrumbs(['Cart'])
     this.getCart()
   }
   getCart() {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {EventService} from "../../../shared/services/event.service";
 
 @Component({
   selector: 'app-contacts',
@@ -7,24 +8,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactsComponent implements OnInit {
   public position = [42.287633, 69.637922]
-  title = 'Company office Standard Oil Qazaqstan'
-  address = 'Shymkent city, Enbekshi district,\n' +
-    'Residential area Zhuldyz, d.27/10'
-  schedule = 'Mon - Fri, 10:00 - 18:00'
-  details = 'БИН/ИИН: 191240029778\n' +
-    'КБЕ: 17\n' +
-    'Банк: АО ДБ «Альфа-Банк»\n' +
-    'БИН Банка: 941240000341\n' +
-    'БИК Банка: ALFAKZKA'
+  title = 'Our contacts'
+  infos = [
+    "We are always glad to see our customers!",
+    "Below you can see the map where our address is displayed."
+    ]
+  details = [
+    {
+      icon: 'fas fa-map-marker-alt',
+      title: 'Address',
+      text: 'Shymkent city, Enbekshi district, Residential \n' +
+      'area Zhuldyz, d.27/10'
+    },
+    {
+      icon: 'fas fa-phone-alt',
+      title: 'Phone',
+      text: '8 (777) 355 32 50'
+    },
+    {
+      icon: 'fas fa-clock',
+      title: 'We are open',
+      text: 'Monday - Friday: 9:00 AM - 6:00 PM'
+    },
+    {
+      icon: 'fas fa-envelope',
+      title: 'E-mail',
+      text: 'eshatyrov@inbox.ru'
+    }
+  ]
   documents = [
     {text: 'Productivity of oil products', link: ''},
     {text: 'Future: project generation', link: ''},
     {text: 'Protection of the environment from pollution', link: ''}
   ]
 
-  constructor() { }
+  constructor(
+    private eventService: EventService
+  ) { }
 
   ngOnInit(): void {
+    this.eventService.changeBreadcrumbs(['Contacts'])
   }
 
 }

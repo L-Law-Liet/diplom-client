@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../../services/product.service";
 import {Product} from "../../models/product.model";
 import {ExternalApiService} from "../../../shared/services/external-api.service";
-import {IDictionary} from "../../../shared/interfaces/dictionary";
+import {EventService} from "../../../shared/services/event.service";
 
 @Component({
   selector: 'app-main',
@@ -33,9 +33,12 @@ export class MainComponent implements OnInit {
     {name: 'FAQ', link: 'contacts', icon: 'fas fa-question-circle'},
   ]
 
-  constructor(private productService: ProductService, private externalApiService: ExternalApiService) { }
+  constructor(private productService: ProductService,
+              private externalApiService: ExternalApiService,
+              private eventService: EventService) { }
 
   ngOnInit(): void {
+    this.eventService.changeBreadcrumbs([])
     this.getCurrency()
     this.getOilPrice()
     this.getProducts()

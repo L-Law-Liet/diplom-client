@@ -1,41 +1,36 @@
 <div class="container">
   <div class="row mt-3">
-    <div class="col-md-8 border-end border-dark">
-      <div class="mt-4">
-        <h1>{{title}}</h1>
+    <div class="mt-4">
+      <h1>{{title}}</h1>
+    </div>
+    <div class="my-4">
+      <div *ngFor="let info of infos">
+        {{info}}
       </div>
-      <div class="mt-4">
-        <p>{{address}}</p>
-        <p  class="mt-4">{{schedule}}</p>
-      </div>
-      <div class="mt-4 map-container">
+    </div>
+    <div class="col-md-8">
+      <div class="map-container">
         <ya-map [center]="position" [zoom]="16">
           <ya-placemark [geometry]="position"></ya-placemark>
         </ya-map>
       </div>
     </div>
-    <div class="col-md-4 border-start border-dark">
-      <div class="card card-body">
-        <div>
-          <div class="m-4">
-            <h2 class="text-center">Company details</h2>
-            <div class="mt-5">
-              {{details}}
-            </div>
+    <div class="col-md-4">
+      <div class="card card-body bg-light p-4">
+        <div class="row" *ngFor="let detail of details">
+          <div class="col-md-1">
+            <h5><i [className]="detail.icon"></i></h5>
           </div>
-          <br>
-          <br>
-          <br>
-          <div class="border-dark border-top p-4">
-            <h2 class="text-center">Documents</h2>
-            <div class="mt-5">
-              <div *ngFor="let document of documents">
-                <div class="my-3">{{document.text}}</div>
-              </div>
-            </div>
+          <div class="col-md-11">
+            <h5>{{detail.title}}:</h5>
+          </div>
+          <div class="col-md-11 offset-md-1">
+            <p>{{detail.text}}</p>
           </div>
         </div>
+
       </div>
     </div>
   </div>
 </div>
+<app-feedback></app-feedback>

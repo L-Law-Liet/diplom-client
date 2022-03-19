@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from "../../models/product.model";
 import {FavouritesService} from "../../services/favourites.service";
+import {EventService} from "../../../shared/services/event.service";
 
 @Component({
   selector: 'app-favourites',
@@ -12,9 +13,11 @@ export class FavouritesComponent implements OnInit {
   products: Product[] = []
   loading = false
 
-  constructor(private favouritesService: FavouritesService) { }
+  constructor(private favouritesService: FavouritesService,
+              private eventService: EventService) { }
 
   ngOnInit(): void {
+    this.eventService.changeBreadcrumbs(['Favourites'])
     this.getFavourites()
   }
   getFavourites() {

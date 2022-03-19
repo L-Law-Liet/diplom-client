@@ -6,6 +6,7 @@ import {environment} from "../../../../environments/environment";
 import {FavouritesService} from "../../services/favourites.service";
 import {AuthService} from "../../../auth/services/auth.service";
 import {CartService} from "../../services/cart.service";
+import {EventService} from "../../../shared/services/event.service";
 
 @Component({
   selector: 'app-product-detail',
@@ -25,7 +26,8 @@ export class ProductDetailComponent implements OnInit {
     public auth: AuthService,
     private favouritesService: FavouritesService,
     private cartService: CartService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private eventService: EventService
   ) {
   }
 
@@ -38,15 +40,12 @@ export class ProductDetailComponent implements OnInit {
   getProduct(id: any) {
     this.productService.getById(id).subscribe(res => {
       this.product = res
+      this.eventService.changeBreadcrumbs(['Products', this.product.name])
       // @ts-ignore
-      this.link = this.product.images[0]
+      this.link = this.product.image
     }, error => {
       console.log(error)
     })
-  }
-
-  setImage(link: string) {
-    this.link = link
   }
 
   getFavourite() {
