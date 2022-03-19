@@ -9,6 +9,8 @@ import {CartComponent} from "./pages/cart/cart.component";
 import {FavouritesComponent} from "./pages/favourites/favourites.component";
 import {NewsComponent} from "./pages/news/news.component";
 import {ArticleComponent} from "./pages/article/article.component";
+import {AboutUsComponent} from "./pages/about-us/about-us.component";
+import {PartnersComponent} from "./pages/partners/partners.component";
 
 const routes: Routes = [
   {
@@ -20,6 +22,14 @@ const routes: Routes = [
     component: ContactsComponent
   },
   {
+    path: 'partners',
+    component: PartnersComponent
+  },
+  {
+    path: 'about-us',
+    component: AboutUsComponent
+  },
+  {
     path: 'news',
     component: NewsComponent
   },
@@ -29,6 +39,10 @@ const routes: Routes = [
   },
   {
     path: 'category/:id',
+    component: ProductsComponent
+  },
+  {
+    path: 'products',
     component: ProductsComponent
   },
   {

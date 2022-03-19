@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
 /*@import '~font-awesome/css/font-awesome.min.css';*/
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
 .pointer {
@@ -13,4 +14,27 @@
 }
 .z-index {
   z-index: 1000
+}
+.bg-base {
+  background: #220956;
+  color: white;
+}
+.text-base {
+  color: #220956
+}
+.border-base {
+  border: 1px #220956 solid;
+}
+.btn-outline-base:hover {
+  color: #fff !important;
+  background-color: #220956 !important;
+  border-color: #220956 !important;
+}
+.btn-outline-base {
+  color: #220956 !important;
+  border: 1px #220956 solid !important;
+}
+.dropdown-item.active {
+  background: #220956;
+  color: white !important;
 }

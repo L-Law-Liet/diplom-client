@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {AngularYandexMapsModule, YaConfig} from "angular8-yandex-maps";
+import {YaConfig} from "angular8-yandex-maps";
 import {StoreModule} from "./store/store.module";
 import {HeaderComponent} from "./shared/layout/header/header.component";
 import {FooterComponent} from "./shared/layout/footer/footer.component";
@@ -29,7 +29,8 @@ const mapConfig: YaConfig = {
         AuthModule,
     ],
     providers: [],
-    exports: [],
+  exports: [
+  ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
