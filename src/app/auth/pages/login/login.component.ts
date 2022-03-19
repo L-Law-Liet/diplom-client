@@ -5,6 +5,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BaseAuth} from "../../interfaces/base-auth";
 import {IDictionary} from "../../../shared/interfaces/dictionary";
 import {UserService} from "../../../shared/services/user.service";
+import {EventService} from "../../../shared/services/event.service";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-login',
@@ -16,8 +18,12 @@ export class LoginComponent extends BaseAuth implements OnInit {
     {name: 'email', type: 'email', icon: 'email', placeholder: 'Email'},
     {name: 'password', type: 'password', icon: 'password', placeholder: 'Password', eye: true}
   ]
+  errors: IDictionary<string> = environment.errors
 
-  constructor(private service: AuthService, private userService: UserService, private router: Router) {
+  constructor(private service: AuthService,
+              private userService: UserService,
+              private router: Router,
+              private eventService: EventService) {
     super();
     this.form = new FormGroup({
       email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
@@ -25,7 +31,9 @@ export class LoginComponent extends BaseAuth implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.eventService.changeBreadcrumbs(['Sign-in'])
+  }
 
   login(): void {
     console.log(this.form, this.form.get('email')?.errors)

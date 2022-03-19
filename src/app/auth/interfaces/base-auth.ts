@@ -31,7 +31,6 @@ export abstract class BaseAuth {
   }
   getError(errors: any) {
     const key = Object.keys(errors)[0]
-    console.log(errors, key)
     return this.errors[key]
   }
 }

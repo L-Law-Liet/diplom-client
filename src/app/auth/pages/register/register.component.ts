@@ -3,6 +3,7 @@ import {AuthService} from '../../services/auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {BaseAuth} from "../../interfaces/base-auth";
+import {EventService} from "../../../shared/services/event.service";
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,9 @@ export class RegisterComponent extends BaseAuth implements OnInit {
     {name: 'password', type: 'password', icon: 'password', placeholder: 'Password', eye: true},
     {name: 'password_confirmation', type: 'password', icon: 'password_confirmation', placeholder: 'Confirm Password', eye: true},
   ]
-  constructor(private service: AuthService, private router: Router) {
+  constructor(private service: AuthService,
+              private router: Router,
+              private eventService: EventService) {
     super();
     this.form = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -28,6 +31,7 @@ export class RegisterComponent extends BaseAuth implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.eventService.changeBreadcrumbs(['Sign-up'])
   }
   register(): void{
     this.form.disable();

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {EventService} from "../../../shared/services/event.service";
 
 @Component({
   selector: 'app-forgot-password',
@@ -14,9 +15,11 @@ export class ForgotPasswordComponent implements OnInit {
   success = ''
   warn = ''
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService,
+              private eventService: EventService) { }
 
   ngOnInit(): void {
+    this.eventService.changeBreadcrumbs(['Forgot password'])
   }
 
   forgotPassword() {
