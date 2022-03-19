@@ -1,0 +1,44 @@
+<div>
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div>
+        <div class="my-md-3">
+          <h1 class="text-base fw-bold">Ready to Grow your Business?</h1>
+        </div>
+        <div>
+          <p class="text-base" style="font-size: 1.2rem">Get in touch with us!</p>
+          <p class="text-dark">Leave your details below so we can talk about how being an Enterprise Partner can add to your success.</p>
+        </div>
+        <div class="py-4">
+          <form [formGroup]="form">
+            <div class="row">
+              <div *ngFor="let input of inputs" class="col-md-{{input.col}} py-3">
+                <label class="mb-2">
+                  {{input.label}}
+                </label>
+                <input
+                  [class.is-invalid]="hasError(input)"
+                  class="form-control p-2"
+                  *ngIf="!input.isTextArea"
+                  [type]="input.type"
+                  [formControlName]="input.name">
+                <textarea
+                  [class.is-invalid]="hasError(input)"
+                  class="form-control p-2"
+                  *ngIf="input.isTextArea"
+                  [formControlName]="input.name"></textarea>
+                <span *ngIf="hasError(input)"
+                      class="invalid-feedback">
+                  {{ form.getError(input.name) ? form.getError(input.name) : getError(form.controls[input.name].errors) }}
+                </span>
+              </div>
+            </div>
+            <div class="my-3">
+              <button [disabled]="form.disabled || form.invalid" type="submit" class="btn bg-base px-5 text-uppercase">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
