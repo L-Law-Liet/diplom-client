@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {User} from "../models/user.model";
 import {Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Media} from "../models/media.model";
 
