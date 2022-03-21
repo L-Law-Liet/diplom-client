@@ -2,68 +2,28 @@
   <div class="container">
     <h1 class="m-3">About Us</h1>
   </div>
-  <div class="bg-base p-5">
-    <div class="row">
-      <div class="text-white col-md-5 p-5">
-        <div class="mx-md-5">
-          <div class="mb-4">
-            <h2>What is oil?</h2>
-          </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias eos facilis ipsam itaque minus natus, neque quibusdam quo tempore vitae?</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus ad asperiores autem consequatur culpa cupiditate dicta dignissimos dolore earum est excepturi facilis fugit iusto laudantium maiores maxime molestiae molestias, natus nemo neque nihil odit pariatur placeat provident quas quibusdam quisquam rem repellendus tempore tenetur ut velit veritatis vero voluptas voluptate voluptatum. Dolores eaque necessitatibus reprehenderit sed suscipit. Amet architecto atque cumque cupiditate deserunt dolorum enim.</p>
+  <div *ngIf="articles.length">
+    <div *ngFor="let article of articles; let even = even"
+         [ngClass]="{'bg-base': even}"
+         class="p-5">
+      <div class="row">
+        <div
+          [ngClass]="{'order-last': even}"
+          class="col-md-7 p-3">
+          <img width="100%" [src]="article.image" alt="">
         </div>
-      </div>
-      <div class="col-md-7 p-3">
-        <img width="100%" src="assets/images/About-us1.png" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="p-5">
-    <div class="row">
-      <div class="col-md-7 p-3">
-        <img width="100%" src="assets/images/About-us2.png" alt="">
-      </div>
-      <div class="col-md-5 p-5">
-        <div class="mx-md-5">
-          <div class="mb-4">
-            <h2>How is oil extracted?</h2>
+        <div
+          [ngClass]="{'text-white': even}"
+          class="col-md-5 p-5">
+          <div class="mx-md-5">
+            <div class="mb-4">
+              <h2>{{article.title}}</h2>
+            </div>
+            {{article.body}}
           </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias eos facilis ipsam itaque minus natus, neque quibusdam quo tempore vitae?</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus ad asperiores autem consequatur culpa cupiditate dicta dignissimos dolore earum est excepturi facilis fugit iusto laudantium maiores maxime molestiae molestias, natus nemo neque nihil odit pariatur placeat provident quas quibusdam quisquam rem repellendus tempore tenetur ut velit veritatis vero voluptas voluptate voluptatum. Dolores eaque necessitatibus reprehenderit sed suscipit. Amet architecto atque cumque cupiditate deserunt dolorum enim.</p>
         </div>
       </div>
     </div>
   </div>
-  <div class="bg-base p-5">
-    <div class="row">
-      <div class="text-white col-md-5 p-5">
-        <div class="mx-md-5">
-          <div class="mb-4">
-            <h2>What is oil produced for?</h2>
-          </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias eos facilis ipsam itaque minus natus, neque quibusdam quo tempore vitae?</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus ad asperiores autem consequatur culpa cupiditate dicta dignissimos dolore earum est excepturi facilis fugit iusto laudantium maiores maxime molestiae molestias, natus nemo neque nihil odit pariatur placeat provident quas quibusdam quisquam rem repellendus tempore tenetur ut velit veritatis vero voluptas voluptate voluptatum. Dolores eaque necessitatibus reprehenderit sed suscipit. Amet architecto atque cumque cupiditate deserunt dolorum enim.</p>
-        </div>
-      </div>
-      <div class="col-md-7 p-3">
-        <img width="100%" src="assets/images/About-us3.png" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="p-5">
-    <div class="row">
-      <div class="col-md-7 p-3">
-        <img width="100%" src="assets/images/About-us4.png" alt="">
-      </div>
-      <div class="col-md-5 p-5">
-        <div class="mx-md-5">
-          <div class="mb-4">
-            <h2>Standard Oil Qazaqstan</h2>
-          </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias eos facilis ipsam itaque minus natus, neque quibusdam quo tempore vitae?</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus ad asperiores autem consequatur culpa cupiditate dicta dignissimos dolore earum est excepturi facilis fugit iusto laudantium maiores maxime molestiae molestias, natus nemo neque nihil odit pariatur placeat provident quas quibusdam quisquam rem repellendus tempore tenetur ut velit veritatis vero voluptas voluptate voluptatum. Dolores eaque necessitatibus reprehenderit sed suscipit. Amet architecto atque cumque cupiditate deserunt dolorum enim.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-loading *ngIf="!articles.length"></app-loading>
 </div>

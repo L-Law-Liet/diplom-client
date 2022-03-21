@@ -6,6 +6,23 @@ import {IDictionary} from "../app/shared/interfaces/dictionary";
 
 export const environment = {
   production: false,
+  ARTICLE_TYPES: {
+    mobileSlider: 1,
+    partners: 2,
+    about: 3,
+    news: 4,
+    homeSlider: 5,
+  },
+  INFO: {
+    company: 'company',
+    xy: 'xy',
+    instagram: 'instagram',
+    facebook: 'facebook',
+    tel: 'tel',
+    email: 'email',
+    address: 'address',
+    logo: 'logo',
+  },
   API: 'http://diplom.loc/api',
   STORAGE: 'http://diplom.loc/storage/',
   BASE_CURRENCY: 'KZT',
