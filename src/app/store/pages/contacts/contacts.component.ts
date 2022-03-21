@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {EventService} from "../../../shared/services/event.service";
+import {InfoService} from "../../services/info.service";
 
 @Component({
   selector: 'app-contacts',
@@ -43,11 +44,19 @@ export class ContactsComponent implements OnInit {
   ]
 
   constructor(
-    private eventService: EventService
+    private eventService: EventService,
+    private infoService: InfoService,
   ) { }
 
   ngOnInit(): void {
     this.eventService.changeBreadcrumbs(['Contacts'])
+    this.getInfo('xy')
   }
-
+  getInfo(key: string) {
+    this.infoService.getByKey(key).subscribe(res => {
+      console.log(res)
+      this.position = JSON.parse(res.value)
+      console.log(this.position)
+    })
+  }
 }
