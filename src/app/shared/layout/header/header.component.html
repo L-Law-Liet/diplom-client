@@ -8,10 +8,10 @@
         </div>
         <div>
           <span class="mx-1">Call Us:
-            <a class="text-decoration-none text-white" href="tel:8 (777) 355 32 50">8 (777) 355 32 50</a>
+            <a class="text-decoration-none text-white" [href]="'tel:' + data.tel">{{data.tel}}</a>
           </span>
-          <a class="text-white" href="#"><i class="mx-1 fab fa-facebook-square"></i></a>
-          <a class="text-white" href="#"><i class="mx-1 fab fa-instagram"></i></a>
+          <a class="text-white" target="_blank" [href]="data.facebook"><i class="mx-1 fab fa-facebook-square"></i></a>
+          <a class="text-white" target="_blank" [href]="data.instagram"><i class="mx-1 fab fa-instagram"></i></a>
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@
   <div class="border-bottom">
     <nav class="navbar navbar-expand-lg container fw-bold">
       <a class="navbar-brand" [routerLink]="'/'">
-        <img src="assets/images/logo.png" width="90px">
+        <img [src]="data.logo" width="90px">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
