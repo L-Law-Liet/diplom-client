@@ -17,6 +17,9 @@ export class CartService {
   create(body: {product_id: number, count: number}): Observable<any>{
     return this.http.post(this.URL, body)
   }
+  update(id: number, body: {product_id: number, count: number}): Observable<any>{
+    return this.http.put(this.URL + '/' + id, body)
+  }
   delete(id: number): Observable<any>{
     return this.http.delete(this.URL + '/' + id)
   }

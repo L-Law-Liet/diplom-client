@@ -27,10 +27,7 @@ export class CartComponent implements OnInit {
     this.total = 0
     this.cartService.all().subscribe(res => {
       this.carts = res
-      for (const resKey in res) {
-        console.log(resKey)
-        this.total += res[resKey].count * res[resKey].product.price
-      }
+      this.sum()
     })
   }
   remove(id: number) {
@@ -59,6 +56,19 @@ export class CartComponent implements OnInit {
       }, () => {
         this.loading = false
       })
+    }
+  }
+  setCount(count: number, cart: Cart) {
+    cart.count = count
+    this.sum()
+    this.cartService.update(cart.id, {product_id: cart.product_id, count}).subscribe(res => {
+      console.log(res)
+    }, error => {alert('Error')})
+  }
+  sum() {
+    this.total = 0
+    for (const resKey in this.carts) {
+      this.total += this.carts[resKey].count * this.carts[resKey].product.price
     }
   }
 }
