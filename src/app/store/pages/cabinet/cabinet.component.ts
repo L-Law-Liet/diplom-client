@@ -16,6 +16,7 @@ import {environment} from "../../../../environments/environment";
 export class CabinetComponent implements OnInit {
   user!: User
   orders: Order[] = []
+  total = 0
   form = new FormGroup({})
   link = ''
   loading = false
@@ -37,12 +38,17 @@ export class CabinetComponent implements OnInit {
     this.getOrders()
   }
   getUser() {
-    this.user = this.userService.user
-    this.link = this.user.image
+    this.userService.getUser().subscribe(res => {
+      console.log(res)
+      this.userService.setUser(res)
+      this.user = this.userService.user
+      this.link = this.user.image
+    })
   }
   getOrders() {
     this.orderService.all().subscribe(res => {
       this.orders = res
+      this.getTotal()
       console.log(res)
     })
   }
@@ -80,5 +86,11 @@ export class CabinetComponent implements OnInit {
     const key = Object.keys(errors)[0]
     console.log(errors, key)
     return this.errors[key]
+  }
+  getTotal() {
+    this.total = 0;
+    for (const ordersKey in this.orders) {
+      this.total += this.orders[ordersKey].total
+    }
   }
 }

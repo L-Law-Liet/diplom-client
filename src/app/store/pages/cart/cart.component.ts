@@ -12,6 +12,7 @@ import {EventService} from "../../../shared/services/event.service";
 export class CartComponent implements OnInit {
   carts: Cart[] = []
   total = 0
+  discount = 0
   loading = false
   constructor(
     private cartService: CartService,
@@ -26,7 +27,8 @@ export class CartComponent implements OnInit {
   getCart() {
     this.total = 0
     this.cartService.all().subscribe(res => {
-      this.carts = res
+      this.carts = res['carts']
+      this.discount = res['discount']
       this.sum()
     })
   }
@@ -70,5 +72,8 @@ export class CartComponent implements OnInit {
     for (const resKey in this.carts) {
       this.total += this.carts[resKey].count * this.carts[resKey].product.price
     }
+  }
+  totalWithDiscount() {
+    return this.total * (100 - this.discount) / 100
   }
 }

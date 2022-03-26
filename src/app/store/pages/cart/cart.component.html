@@ -57,7 +57,11 @@
               <td>{{cart.count}}</td>
             </tr>
             <div class="pt-2">
-              <b>Total: {{total | currency}}</b>
+              <div>Discount: {{discount}}%</div>
+              <b>Total:
+                <span *ngIf="discount" class="text-decoration-line-through text-secondary me-2">{{total | currency}}</span>
+                <span>{{totalWithDiscount() | currency}}</span>
+              </b>
             </div>
             </tbody>
           </table>

@@ -7,6 +7,7 @@ export class Cart {
     public product_id: number,
     public user_id: number,
     public product: Product,
+    public discount: number,
   ) {
   }
 }

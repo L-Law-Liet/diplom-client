@@ -1,4 +1,5 @@
 import {Media} from "./media.model";
+import {DiscountStatus} from "../../store/models/discount-status.model";
 
 export class User {
   constructor(
@@ -8,5 +9,6 @@ export class User {
     public image: string,
     public admin: boolean,
     public phone: string,
+    public card: DiscountStatus,
   ) {}
 }

@@ -59,6 +59,14 @@
         </form>
       </div>
       <div class="col-md-6">
+        <div class="card card-body p-4 mb-3" [style.background]="user.card.color">
+          <div class="text-white">
+            <h3 class="text-center">{{user.card.name}}</h3>
+            <p>Expires: {{user.card.expires | date: 'dd.LL.y'}}</p>
+            <p>Minimum sum: {{user.card.min | currency}}</p>
+            <p>Your total: {{total | currency}}</p>
+          </div>
+        </div>
         <div class="card card-body">
           <div class="my-2">
             <h2 class="text-center">Your Orders</h2>
@@ -98,6 +106,7 @@
                     <td>{{item.created_at | date:'dd.LL.y'}}</td>
                   </tr>
                   <div class="pt-2">
+                    <div>Discount: {{order.discount}}%</div>
                     <b>Total: {{order.total | currency}}</b>
                   </div>
                   </tbody>
