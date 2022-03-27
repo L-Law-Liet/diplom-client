@@ -63,7 +63,7 @@
           <div class="text-white">
             <h3 class="text-center">{{user.card.name}}</h3>
             <p>Expires: {{user.card.expires | date: 'dd.LL.y'}}</p>
-            <p>Minimum sum: {{user.card.min | currency}}</p>
+            <p *ngIf="user.card.next">Minimum sum for next status: {{user.card.next.min | currency}}</p>
             <p>Your total: {{total | currency}}</p>
           </div>
         </div>

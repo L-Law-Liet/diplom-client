@@ -6,5 +6,6 @@ export class DiscountStatus {
     public min: number,
     public discount: number,
     public expires: string,
+    public next: DiscountStatus,
   ) {}
 }
