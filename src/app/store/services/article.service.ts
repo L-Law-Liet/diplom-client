@@ -16,10 +16,13 @@ export class ArticleService {
   all(): Observable<any>{
     return this.http.get(this.URL)
   }
+  getById(id: any): Observable<any>{
+    return this.http.get(this.URL + '/' + id)
+  }
   getTypes(): Observable<any>{
     return this.http.get(this.TYPES_URL)
   }
   getByType(type: number): Observable<any>{
-    return this.http.get(this.URL + '/' + type)
+    return this.http.get(this.TYPES_URL + '/' + type)
   }
 }
