@@ -19,7 +19,7 @@ export class CabinetComponent implements OnInit {
   total = 0
   form = new FormGroup({})
   link = ''
-  loading = false
+  loading = true
   errors: IDictionary<string> = environment.errors
   constructor(
     private userService: UserService,
@@ -36,6 +36,7 @@ export class CabinetComponent implements OnInit {
     this.eventService.changeBreadcrumbs(['Profile'])
     this.getUser()
     this.getOrders()
+    console.log(this.form, this.form.dirty)
   }
   getUser() {
     this.userService.getUser().subscribe(res => {
@@ -43,6 +44,7 @@ export class CabinetComponent implements OnInit {
       this.userService.setUser(res)
       this.user = this.userService.user
       this.link = this.user.image
+      this.loading = false
     })
   }
   getOrders() {
@@ -68,15 +70,16 @@ export class CabinetComponent implements OnInit {
     }
   }
   update() {
-    if (!this.loading) {
-      this.loading = true
+    if (!this.loading && this.form.valid) {
+      this.form.disable()
       this.userService.update(this.form.getRawValue()).subscribe(res => {
         this.userService.setUser(res)
       }, error => {
-        this.loading = false
         this.form.setErrors(error.error.errors)
         console.log(error.error.errors, this.form.getError('phone'))
-      }, () => {this.loading = false})
+      }, () => {
+        this.form.enable()
+      })
     }
   }
   hasError(name: string): boolean {
