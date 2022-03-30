@@ -33,9 +33,11 @@ export class ForgotPasswordComponent implements OnInit {
       error => {
         console.log(error)
         this.form.setErrors(error.error.errors);
+      },
+      () => {
+        this.form.enable()
       }
       )
-    this.form.enable()
   }
 
 }
