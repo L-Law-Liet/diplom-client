@@ -51,7 +51,7 @@
                   {{ form.getError('phone') ? form.getError('phone') : getError(form.controls['phone'].errors) }}
                 </span>
             </div>
-            <button type="submit" class="btn btn-dark" [disabled]="form.disabled || (form.invalid && form.dirty) || loading">
+            <button type="submit" class="btn btn-outline-base" [disabled]="form.disabled || (form.invalid && form.dirty) || loading">
               Save
               <span *ngIf="form.disabled" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             </button>
