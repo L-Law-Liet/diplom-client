@@ -86,7 +86,7 @@
                 </button>
               </h2>
               <div [id]="'collapse' + order.id"
-                   class="accordion-collapse collapse"
+                   class="accordion-collapse collapse table-responsive"
                    [attr.aria-labelledby]="'head' + order.id"
               >
                 <table class="table table-hover table-striped table-bordered">
@@ -107,7 +107,7 @@
                   </tr>
                   <div class="pt-2">
                     <div>Discount: {{order.discount}}%</div>
-                    <b>Total: {{order.total | currency}}</b>
+                    <b>Total:</b><b>{{order.total | currency}}</b>
                   </div>
                   </tbody>
                 </table>

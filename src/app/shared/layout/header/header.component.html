@@ -17,11 +17,11 @@
     </div>
   </nav>
   <div class="border-bottom">
-    <nav class="navbar navbar-expand-lg container fw-bold">
+    <nav class="navbar navbar-expand-lg navbar-light container fw-bold">
       <a class="navbar-brand" [routerLink]="'/'">
         <img [src]="data.logo" width="90px">
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -91,6 +91,7 @@
       </div>
 
       <div
+        class="d-none d-md-block"
         *ngIf="auth.isAuth()"
         [style]="{'background-image': 'url(' + userService.user.image + ')'}"
         style="background-size: cover; height: 69px; width: 69px; border-radius: 50%; background-position: center"
