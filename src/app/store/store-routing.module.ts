@@ -11,6 +11,7 @@ import {NewsComponent} from "./pages/news/news.component";
 import {ArticleComponent} from "./pages/article/article.component";
 import {AboutUsComponent} from "./pages/about-us/about-us.component";
 import {PartnersComponent} from "./pages/partners/partners.component";
+import {AuthGuard} from "../auth/guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -51,15 +52,18 @@ const routes: Routes = [
   },
   {
     path: 'cabinet',
-    component: CabinetComponent
+    component: CabinetComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'cart',
-    component: CartComponent
+    component: CartComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'favourites',
-    component: FavouritesComponent
+    component: FavouritesComponent,
+    canActivate: [AuthGuard]
   },
 ];
 
